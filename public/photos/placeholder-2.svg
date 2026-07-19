@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#efe4d2"/>
+      <stop offset="100%" stop-color="#dccdaf"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#g2)"/>
+  <g transform="translate(300 300)" opacity="0.5">
+    <path d="M0 34 C -26 16, -40 2, -40 -10 C -40 -24, -30 -30, -21 -30 C -12 -30, -4 -22, 0 -14 C 4 -22, 12 -30, 21 -30 C 30 -30, 40 -24, 40 -10 C 40 2, 26 16, 0 34 Z" fill="none" stroke="#a98d5f" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="300" y="370" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#a98d5f" opacity="0.7">здесь будет наше фото 2</text>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "name": "Наше путешествие",
+  "short_name": "Наш путь",
+  "description": "Каждая великая история любви начинается с одного маленького шага.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6ef",
+  "theme_color": "#faf6ef",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,26 +1,229 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Our Journey — design system
+   Warm cream / beige / soft gold. Cinematic, calm, premium.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #faf6ef;
+  --bg-soft: #f4ede1;
+  --surface: rgba(255, 253, 248, 0.72);
+  --surface-strong: #fffdf8;
+  --ink: #3d3428;
+  --ink-soft: #7a6f5f;
+  --ink-faint: #a89b87;
+  --gold: #c2a878;
+  --gold-deep: #a98d5f;
+  --gold-soft: #e8dcc3;
+  --blush: #d9a5a0;
+  --line: rgba(120, 100, 70, 0.14);
+  --glow: rgba(226, 197, 145, 0.35);
+  --shadow: 0 24px 70px -30px rgba(90, 70, 40, 0.35);
+}
+
+html.dark {
+  --bg: #14110d;
+  --bg-soft: #1c1813;
+  --surface: rgba(32, 27, 21, 0.66);
+  --surface-strong: #211c15;
+  --ink: #efe6d6;
+  --ink-soft: #b3a68f;
+  --ink-faint: #7d7260;
+  --gold: #d3b788;
+  --gold-deep: #e3c896;
+  --gold-soft: #4a3f2d;
+  --blush: #c98f8a;
+  --line: rgba(230, 205, 160, 0.14);
+  --glow: rgba(220, 180, 110, 0.22);
+  --shadow: 0 24px 70px -30px rgba(0, 0, 0, 0.8);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-soft: var(--gold-soft);
+  --color-blush: var(--blush);
+  --color-line: var(--line);
+  --font-serif: var(--font-display), Georgia, serif;
+  --font-sans: var(--font-body), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  transition: background-color 0.8s ease, color 0.8s ease;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+::selection {
+  background: var(--gold-soft);
+  color: var(--ink);
+}
+
+/* Soft ambient vignette that lives behind every page */
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1100px 700px at 80% -10%, var(--glow), transparent 60%),
+    radial-gradient(900px 600px at 10% 110%, var(--glow), transparent 65%);
+  opacity: 0.7;
+  transition: opacity 1.2s ease;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* Glass morphism, used sparingly */
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+/* Elegant hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2.6rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--surface-strong);
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  box-shadow: 0 12px 40px -12px var(--gold);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, opacity 0.3s ease;
+  will-change: transform;
+}
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 50px -12px var(--gold);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.99);
+}
+.btn-primary:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.btn-ghost:hover {
+  color: var(--ink);
+  border-color: var(--gold);
+  background: var(--surface);
+}
+
+/* Inputs */
+.input-soft {
+  width: 100%;
+  padding: 1rem 1.3rem;
+  border-radius: 1.1rem;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.input-soft::placeholder {
+  color: var(--ink-faint);
+}
+.input-soft:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--glow);
+}
+
+/* Gentle floating for decorative elements */
+@keyframes drift {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.drift {
+  animation: drift 7s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@keyframes flame {
+  0%, 100% { transform: scaleY(1) translateX(0); opacity: 0.95; }
+  30% { transform: scaleY(1.08) translateX(0.6px); opacity: 1; }
+  60% { transform: scaleY(0.94) translateX(-0.6px); opacity: 0.9; }
+}
+.flame {
+  transform-origin: 50% 100%;
+  animation: flame 1.6s ease-in-out infinite;
+}
+
+@keyframes smoke-rise {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+  20% { opacity: 0.5; }
+  100% { transform: translate(-10px, -46px) scale(1.5); opacity: 0; }
+}
+.smoke {
+  animation: smoke-rise 5s ease-out infinite;
+}
+
+/* Scrollbar, kept quiet */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-soft);
+  border-radius: 8px;
+  border: 3px solid var(--bg);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

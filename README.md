@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Наше путешествие 💛
 
-## Getting Started
+Приватный интерактивный сайт-квест для предложения руки и сердца в Астане.
+Каждая точка города открывает новую главу вашей истории. Последняя глава —
+дома, за ужином, с кольцом.
 
-First, run the development server:
+## Как это работает
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Маршрут линейный, главы открываются по очереди:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Обложка** — две звезды летят навстречу и становятся сердцем.
+2. **Глава 1 · Двое незнакомцев** — силуэты идут навстречу друг другу.
+3. **Глава 2 · Наша первая встреча** — плывущие фотографии-воспоминания.
+4. **Городской квест** — иллюстрированная карта Астаны, 5 точек:
+   Байтерек → Бульвар Нуржол → Парк влюблённых → Набережная Есиля → Сфера EXPO.
+   На каждой точке она вводит **кодовое слово** из спрятанной тобой записки.
+   Вопросы и задания сохраняются на устройстве.
+5. **Финальная карта** — золотая нить сама тянется дальше и превращается в **дом**.
+6. **Дом** — анимация всей вашей истории: встреча, руки, постройка дома, звёзды.
+7. **Предложение** — без кнопок. Текст, темнота, пауза… и вопрос.
+   В этот момент ты встаёшь на колено.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Кодовые слова по умолчанию
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Точка | Слово |
+|---|---|
+| Байтерек | надежда |
+| Бульвар Нуржол | память |
+| Парк влюблённых | мечта |
+| Набережная Есиля | будущее |
+| Сфера EXPO | звёзды |
 
-## Learn More
+Регистр и «ё/е» не важны. Слова меняются в админке.
 
-To learn more about Next.js, take a look at the following resources:
+## Панель организатора
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`/admin`, пароль по умолчанию — `forever` (смени его во вкладке «Контент»).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Там есть:
+- **Чек-лист** подготовки (дорога, кольцо, письма, свечи, камера…) с прогрессом;
+- **Ужин** — список покупок;
+- **Контент** — все тексты, имена, даты, кодовые слова, координаты, фото, плейлист;
+- **Её ответы** — всё, что она написала на маршруте;
+- **Сервис** — экспорт/импорт контента, сброс прохождения.
 
-## Deploy on Vercel
+## Подготовка (важно!)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Контент и прогресс живут в браузере устройства (localStorage) — интернет и
+сервер не нужны.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. `npm install && npm run dev` (или задеплой `npm run build` на Vercel).
+2. Открой сайт **на её телефоне** → `/admin` → заполни имена, даты, тексты.
+   Либо настрой у себя и перенеси файлом: «Сервис → Экспорт» → «Импорт» на её телефоне.
+3. Положи ваши фотографии в `public/photos/` и пропиши их во вкладке
+   «Контент → Признания, фото, плейлист» в формате `путь | подпись`.
+4. Распечатай записки с кодовыми словами и спрячь на точках.
+5. Во вкладке «Сервис» нажми «Сбросить прохождение», чтобы она начала с обложки.
+6. Открой сайт один раз на её телефоне — сервис-воркер закэширует всё для офлайна.
+
+## Технологии
+
+Next.js 16 · TypeScript · Tailwind CSS 4 · Framer Motion · GSAP ·
+генеративное пианино на Web Audio (без аудиофайлов) · PWA/офлайн ·
+погода Open-Meteo · тёмная и светлая тема.
+
+Страницы: `/` · `/story/1` · `/story/2` · `/quest` · `/quest/[stop]` ·
+`/final` · `/home` · `/proposal` · `/gallery` · `/memories` · `/admin`.
